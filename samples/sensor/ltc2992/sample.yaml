@@ -1,0 +1,8 @@
+sample:
+  name: Analog Devices LTC2992 dual wide range power monitor
+tests:
+  sample.drivers.ltc2992:
+    build_only: true
+    platform_allow: nucleo_f446re
+    tags: sensors
+    depends_on: i2c
