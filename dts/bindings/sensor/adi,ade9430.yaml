@@ -1,0 +1,51 @@
+description: ADE9430 Polyphase Energy Power Quality Monitor
+
+compatible: "adi,ade9430"
+
+include: [sensor-device.yaml, spi-device.yaml]
+
+properties:
+  egy_model:
+    type: int
+    default: 2
+    description: |
+      Energy model used.
+      0 = ADE9430_EGY_WITH_RESET
+      1 = ADE9430_EGY_HALF_LINE_CYCLES
+      2 = ADE9430_EGY_NR_SAMPLES (default)
+    enum: 
+      - 0
+      - 1
+      - 2
+
+  selected_phase:
+    type: int
+    default: 0
+    description: |
+      Phase channel to monitor.
+      0 = PHASE_A (default)
+      1 = PHASE_B
+      2 = PHASE_C
+    enum: 
+      - 0
+      - 1
+      - 2
+
+  egy_model_value:
+    type: int
+    default: 7999
+    description: |
+      Value specific to the user energy use model. It can be either
+      1 for reading with reset, number of half line cycles or number
+      of samples. Default is 7999 for NR_SAMPLES energy model.
+
+  enable_phase:
+    type: array
+    default: [1, 1, 1]
+    description: |
+      List of flags to enable or disable each of the three phases.
+
+  enable_temp:
+    type: boolean
+    description: |
+      Enables temperature sensor.
