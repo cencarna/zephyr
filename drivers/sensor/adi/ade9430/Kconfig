@@ -1,0 +1,13 @@
+# ADE9430 Polyphase Energy Power Quality Monitor
+
+# Copyright (c) 2024 Analog Devices Inc.
+# SPDX-License-Identifier: Apache-2.0
+
+config ADE9430
+	bool "ADE9430 Polyphase Energy Power Quality Monitor"
+	default y
+	depends on DT_HAS_ADI_ADE9430_ENABLED
+	select SPI
+	help
+	  Enable the driver for Analog Devices ADE9430
+	  Polyphase Energy Power Quality Monitor.
