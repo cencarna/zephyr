@@ -1,0 +1,128 @@
+description: LTC2992 Dual Wide Range Power Monitor
+
+compatible: "adi,ltc2992"
+
+include: [sensor-device.yaml, i2c-device.yaml]
+
+properties:
+  selected_channel:
+    type: int
+    default: 1
+    description: |
+      Channel to monitor.
+      1 = SENSE1
+      2 = SENSE2
+      3 = GPIO1
+      4 = GPIO2
+      5 = GPIO3
+      6 = GPIO4
+    enum: 
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+
+  shunt_resistor:
+    type: array
+    default: [10, 10]
+    description: |
+      Shunt resistor used for each sense channel in mOhms. 
+
+  offset_calibration:
+    type: int
+    default: 0
+    description: |
+      Offset calibration for current measurements. 
+      0 = Calibrate every conversion (default)
+      1 = Calibrate on Demand
+    enum: 
+      - 0
+      - 1
+
+  measure_mode:
+    type: int
+    default: 0
+    description: |
+      Measurement mode.
+      0 = Continuous Scan Mode (default)
+      1 = Snapshot Mode
+      2 = Single Cycle Mode
+      3 = Shutdown
+    enum:
+      - 0
+      - 1
+      - 2
+      - 3
+
+  vsel_continuous:
+    type: int
+    default: 0
+    description: |
+      Selects which voltage channels to read. Configured only when measurement
+      mode is set at Continuous Scan Mode. Otherwise, ignored.
+      0 = ALL channels (default)
+      1 = SENSE1 and SENSE2 only
+      2 = GPIO1 and GPIO2 only
+      3 = GPIO1, GPIO2, GPIO3, GPIO4 only
+    enum:
+      - 0
+      - 1
+      - 2
+      - 3
+
+  vsel_snapshot:
+    type: int
+    default: 0
+    description: |
+      Selects which voltage channels to read. Configured only when measurement
+      mode is set at Snapshot Mode. Otherwise, ignored.
+      0 = SENSE1 (default)
+      1 = SENSE2
+      2 = GPIO1
+      3 = GPIO2
+      4 = GPIO3
+      5 = GPIO4
+      6 = SENSE1, SENSE2
+      7 = GPIO1, GPIO2
+    enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+
+  enable_gpios:
+    type: boolean
+    description: |
+      Enable to fetch gpio data during sample fetch. Disabled at default.
+
+  alert_clear:
+    type: boolean
+    description: |
+      Enable to clear ALERT pin if device is addressed. Disabled at default.
+
+  fault_clear_on_read:
+    type: boolean
+    description: |
+      Enable to clear FAULT registers on read. Disabled at default.
+
+  stuck_bus_timer_wakeup:
+    type: boolean
+    description: | 
+      Allows the device to exit Shutdown Mode when stuck bus timer reached.
+      Disabled at default.
+
+  resolution:
+    type: int
+    default: 0
+    description: |
+      ADC resolution for voltage, current and power readings. Set to enable 
+      8-bit resolution. Default setting is 12-bit.
+    enum:
+      - 0
+      - 1

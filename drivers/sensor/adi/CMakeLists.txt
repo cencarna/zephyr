@@ -9,4 +9,5 @@ add_subdirectory_ifdef(CONFIG_ADXL345 adxl345)
 add_subdirectory_ifdef(CONFIG_ADXL362 adxl362)
 add_subdirectory_ifdef(CONFIG_ADXL367 adxl367)
 add_subdirectory_ifdef(CONFIG_ADXL372 adxl372)
+add_subdirectory_ifdef(CONFIG_LTC2992 ltc2992)
 # zephyr-keep-sorted-stop
